@@ -48,6 +48,7 @@
             this.ListBoxTagGroup.Name = "ListBoxTagGroup";
             this.ListBoxTagGroup.Size = new System.Drawing.Size(220, 238);
             this.ListBoxTagGroup.TabIndex = 0;
+            this.ListBoxTagGroup.Tag = "Group";
             this.ListBoxTagGroup.SelectedIndexChanged += new System.EventHandler(this.ListBoxTagGroup_SelectedIndexChanged);
             this.ListBoxTagGroup.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ListBoxTagGroup_MouseUp);
             // 
@@ -68,6 +69,9 @@
             this.listBoxTag.Name = "listBoxTag";
             this.listBoxTag.Size = new System.Drawing.Size(212, 238);
             this.listBoxTag.TabIndex = 2;
+            this.listBoxTag.Tag = "Tag";
+            this.listBoxTag.SelectedIndexChanged += new System.EventHandler(this.listBoxTag_SelectedIndexChanged);
+            this.listBoxTag.MouseUp += new System.Windows.Forms.MouseEventHandler(this.listBoxTag_MouseUp);
             // 
             // label2
             // 
@@ -86,26 +90,26 @@
             this.MenuModify,
             this.MenuDel});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(241, 127);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(117, 94);
             // 
             // MenuAdd
             // 
             this.MenuAdd.Name = "MenuAdd";
-            this.MenuAdd.Size = new System.Drawing.Size(240, 30);
+            this.MenuAdd.Size = new System.Drawing.Size(116, 30);
             this.MenuAdd.Text = "增加";
             this.MenuAdd.Click += new System.EventHandler(this.MenuAdd_Click);
             // 
             // MenuModify
             // 
             this.MenuModify.Name = "MenuModify";
-            this.MenuModify.Size = new System.Drawing.Size(240, 30);
+            this.MenuModify.Size = new System.Drawing.Size(116, 30);
             this.MenuModify.Text = "修改";
-            this.MenuModify.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
+            this.MenuModify.Click += new System.EventHandler(this.MenuModfiy_Click);
             // 
             // MenuDel
             // 
             this.MenuDel.Name = "MenuDel";
-            this.MenuDel.Size = new System.Drawing.Size(240, 30);
+            this.MenuDel.Size = new System.Drawing.Size(116, 30);
             this.MenuDel.Text = "删除";
             // 
             // TagForm

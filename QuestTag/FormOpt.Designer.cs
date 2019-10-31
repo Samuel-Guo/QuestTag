@@ -31,8 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.okbtn = new System.Windows.Forms.Button();
+            this.cancelbtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -61,33 +61,36 @@
             this.checkBox1.Text = "是否为单选组";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // okbtn
             // 
-            this.button1.Location = new System.Drawing.Point(338, 102);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 39);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "确定";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.okbtn.Location = new System.Drawing.Point(338, 102);
+            this.okbtn.Name = "okbtn";
+            this.okbtn.Size = new System.Drawing.Size(112, 39);
+            this.okbtn.TabIndex = 3;
+            this.okbtn.Text = "确定";
+            this.okbtn.UseVisualStyleBackColor = true;
+            this.okbtn.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // cancelbtn
             // 
-            this.button2.Location = new System.Drawing.Point(480, 102);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 39);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "取消";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.cancelbtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelbtn.Location = new System.Drawing.Point(480, 102);
+            this.cancelbtn.Name = "cancelbtn";
+            this.cancelbtn.Size = new System.Drawing.Size(112, 39);
+            this.cancelbtn.TabIndex = 3;
+            this.cancelbtn.Text = "取消";
+            this.cancelbtn.UseVisualStyleBackColor = true;
+            this.cancelbtn.Click += new System.EventHandler(this.button2_Click);
             // 
             // FormOpt
             // 
+            this.AcceptButton = this.okbtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelbtn;
             this.ClientSize = new System.Drawing.Size(623, 153);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cancelbtn);
+            this.Controls.Add(this.okbtn);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
@@ -106,7 +109,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button okbtn;
+        private System.Windows.Forms.Button cancelbtn;
     }
 }

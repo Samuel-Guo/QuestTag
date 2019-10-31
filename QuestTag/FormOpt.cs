@@ -14,7 +14,7 @@ namespace QuestTag
     {
         public string textString;
         public bool isChecked;
-        public FormOpt(string formCaption,bool hasCheckBox )
+        public FormOpt(string formCaption,bool hasCheckBox,string textCaption ="",bool isChecked = false )
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterParent;
@@ -22,6 +22,9 @@ namespace QuestTag
             ShowInTaskbar = false;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Text = formCaption;
+            textBox1.Text = textCaption;
+            checkBox1.Visible = hasCheckBox;
+            checkBox1.Checked = isChecked;
         }
 
         private void Form2_Load(object sender, EventArgs e)
