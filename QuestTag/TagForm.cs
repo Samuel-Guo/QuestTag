@@ -74,7 +74,8 @@ namespace QuestTag
                 Db_struct.Tag_def tag = new Db_struct.Tag_def();
                 tag.id = Convert.ToInt32(tags.GetString(0));
                 tag.caption = tags.GetString(1);
-                cap_map_tag.Add(tag.caption,tag);
+                if (!cap_map_tag.ContainsKey(tag.caption))
+                    cap_map_tag.Add(tag.caption,tag);
                 listBoxTag.Items.Add(tag.caption);
                 // ListBoxTagGroup.
             }
@@ -202,6 +203,41 @@ namespace QuestTag
         private void listBoxTag_MouseUp(object sender, MouseEventArgs e)
         {
             PopMenu(sender,e);
+        }
+
+        private void MenuDel_Click(object sender, EventArgs e)
+        {
+            string selectText = selectedBox.SelectedItem.ToString();
+            if (selectedBox.Tag.ToString() == "Group")
+            {
+                var confirm = MessageBox.Show("确定删除标签组"+ selectText +"吗？此操作将删除标签组下面所有标签。","确认删除",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                if (confirm == DialogResult.Yes)
+                {
+                    string sqlcmd = string.Format("UPDATE tag_group_def set is_valid= 0 where id = {0} ;", cap_map_tag_group[selectText].id);
+                    if (globalDB.ExeUpdate(sqlcmd) == 0)
+                        MessageBox.Show("update fail!");
+                    loadListBox();
+                }
+            }
+            else
+            {
+                var confirm = MessageBox.Show("确定删除标签" + selectText + "吗？", "确认删除", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm == DialogResult.Yes)
+                {
+                    int tagId = cap_map_tag[selectText].id;
+                    int seletIdx = ListBoxTagGroup.SelectedIndex;
+
+                    string sqlcmd = string.Format("UPDATE tag_def set is_valid= 0 where id = {0} ;", tagId);
+                    if (globalDB.ExeUpdate(sqlcmd) == 0)
+                        MessageBox.Show("update fail!");
+                    loadListBox();
+                    ListBoxTagGroup.SelectedIndex = seletIdx;
+
+                }
+
+
+            }
+
         }
     }
 }

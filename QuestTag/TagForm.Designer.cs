@@ -111,6 +111,7 @@
             this.MenuDel.Name = "MenuDel";
             this.MenuDel.Size = new System.Drawing.Size(116, 30);
             this.MenuDel.Text = "删除";
+            this.MenuDel.Click += new System.EventHandler(this.MenuDel_Click);
             // 
             // TagForm
             // 
