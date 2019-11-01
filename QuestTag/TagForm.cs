@@ -41,10 +41,14 @@ namespace QuestTag
             var tagGroup = globalDB.ExeQuery(sqlcmd);
             while (tagGroup.Read())
             {
-                Db_struct.Tag_group_def tag_Group;
-                tag_Group.id = Convert.ToInt32(tagGroup.GetString(0));
-                tag_Group.caption = tagGroup.GetString(1);
-                tag_Group.unique = Convert.ToInt32(tagGroup.GetString(2));
+                Db_struct.Tag_group_def tag_Group = new QuestTag.Db_struct.Tag_group_def
+                {
+                    id = Convert.ToInt32(tagGroup.GetString(0)),
+                    caption = tagGroup.GetString(1),
+                    unique = Convert.ToInt32(tagGroup.GetString(2))
+                };
+                tag_Group.unique = Convert.ToInt32(tagGroup.GetString(3));
+
                 cap_map_tag_group.Add(tag_Group.caption, tag_Group);
                 id_map_tag_group.Add(tag_Group.id, tag_Group);
                 

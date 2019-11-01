@@ -13,6 +13,7 @@ namespace QuestTag
            public int id  ;
            public string caption;
            public int unique;
+           public int is_valid;
         }
         public struct Tag_def
         {
