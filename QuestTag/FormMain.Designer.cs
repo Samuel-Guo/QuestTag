@@ -66,18 +66,19 @@
             // 标签管理ToolStripMenuItem
             // 
             this.标签管理ToolStripMenuItem.Name = "标签管理ToolStripMenuItem";
-            this.标签管理ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.标签管理ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
             this.标签管理ToolStripMenuItem.Text = "标签管理";
             // 
-            // Form1
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1213, 480);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "FormMain";
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

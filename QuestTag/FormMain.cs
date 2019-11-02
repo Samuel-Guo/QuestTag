@@ -18,35 +18,24 @@ namespace QuestTag
         public FormMain()
         {
             InitializeComponent();
+            InitDBconf();
+
+        //    GlobalVar.UpdateDBList();
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            InitDBconf();
+            //Visible = false;
+            WindowState = FormWindowState.Minimized;
+
             TagForm tagForm = new TagForm();
             tagForm.Show();
-            ReadGroupList();
-
+            QuestForm questForm = new QuestForm();
+            questForm.Show();
+            questForm.Activate();
         }
 
-        private void ReadGroupList()
-        {
-            var tag_group_list = GlobalVar.tag_group_list;
-            string sqlcmd = "SELECT * FROM tag_group_def where is_valid = 1 ; ";
-            var tagGroup = globalDB.ExeQuery(sqlcmd);
-            while (tagGroup.Read())
-            {
-                Db_struct.Tag_group_def tag_Group;
-                tag_Group.id = Convert.ToInt32(tagGroup.GetString(0));
-                tag_Group.caption = tagGroup.GetString(1);
-                tag_Group.unique = Convert.ToInt32(tagGroup.GetString(2));
-                tag_Group.is_valid = Convert.ToInt32(tagGroup.GetString(3));
-                tag_group_list.Add(tag_Group);
-                //      tagMap.Add(id, group_tag_name);
-                // ListBoxTagGroup.
-            }
-        }
 
         private static void InitDBconf()
         {

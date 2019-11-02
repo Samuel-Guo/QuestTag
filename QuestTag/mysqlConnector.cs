@@ -99,6 +99,55 @@ namespace SamuelSpace
 
         }
         #endregion
+
+        public System.Collections.Generic.List<T> ReadDB<T>(string sqlcmd)
+        {
+            var tags = this.ExeQuery(sqlcmd);
+            System.Collections.Generic.List<T> list = new System.Collections.Generic.List<T>();
+
+            Type type = typeof(T);
+            object value = new object();
+
+            if (type == typeof(string) )
+            {
+                while (tags.Read())
+                {
+ 
+                    if (tags.GetValue(0).GetType() != typeof(DBNull))
+                        value = tags.GetValue(0);
+                    list.Add((T)value);
+                }
+            }
+            else if(type == typeof(int))
+            {
+                while (tags.Read())
+                {
+                     value = tags.GetInt32(0);
+                     list.Add((T)value);
+                }
+            }
+            else
+            {
+                object db_struct;
+                db_struct = Activator.CreateInstance(type);
+                System.Reflection.FieldInfo[] fields = typeof(T).GetFields();
+                while (tags.Read())
+                {
+                    int col = 0;
+                    //fields[idx].SetValue(db_struct, tags.GetValue(idx));
+                    //idx++;
+                    foreach (var field in fields)
+                    {
+                        if (tags.GetValue(col).GetType() != typeof(DBNull))
+                            field.SetValue(db_struct, tags.GetValue(col));
+                        col++;
+                    }
+                    list.Add((T)db_struct);
+                }
+            }
+            return list;
+        }
+
     }
 
 

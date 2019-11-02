@@ -37,25 +37,40 @@ namespace QuestTag
             id_map_tag_group.Clear();
             ListBoxTagGroup.Items.Clear();
             listBoxTag.Items.Clear();
-            string sqlcmd = "SELECT * FROM tag_group_def where is_valid = 1 ; ";
-            var tagGroup = globalDB.ExeQuery(sqlcmd);
-            while (tagGroup.Read())
-            {
-                Db_struct.Tag_group_def tag_Group = new QuestTag.Db_struct.Tag_group_def
-                {
-                    id = Convert.ToInt32(tagGroup.GetString(0)),
-                    caption = tagGroup.GetString(1),
-                    unique = Convert.ToInt32(tagGroup.GetString(2))
-                };
-                tag_Group.unique = Convert.ToInt32(tagGroup.GetString(3));
 
+
+            string sqlcmd = "SELECT * FROM tag_group_def where is_valid = 1 ; ";
+
+            var tag_group_list = globalDB.ReadDB<Db_struct.Tag_group_def>(sqlcmd);
+
+            //string sqlcmd = "SELECT * FROM tag_group_def where is_valid = 1 ; ";
+            //var tagGroup = globalDB.ExeQuery(sqlcmd);
+            foreach (var tag_Group in tag_group_list)
+            {
                 cap_map_tag_group.Add(tag_Group.caption, tag_Group);
                 id_map_tag_group.Add(tag_Group.id, tag_Group);
-                
+
                 //      tagMap.Add(id, group_tag_name);
                 ListBoxTagGroup.Items.Add(tag_Group.caption);
-                // ListBoxTagGroup.
+
             }
+            //while (tagGroup.Read())
+            //{
+            //    Db_struct.Tag_group_def tag_Group = new QuestTag.Db_struct.Tag_group_def
+            //    {
+            //        id = Convert.ToInt32(tagGroup.GetString(0)),
+            //        caption = tagGroup.GetString(1),
+            //        unique = Convert.ToInt32(tagGroup.GetString(2))
+            //    };
+            //    tag_Group.unique = Convert.ToInt32(tagGroup.GetString(3));
+
+            //    cap_map_tag_group.Add(tag_Group.caption, tag_Group);
+            //    id_map_tag_group.Add(tag_Group.id, tag_Group);
+                
+            //    //      tagMap.Add(id, group_tag_name);
+            //    ListBoxTagGroup.Items.Add(tag_Group.caption);
+            //    // ListBoxTagGroup.
+            //}
         }
 
         private Db_struct.Tag_group_def Db_struct(int id, string caption, int unique)
@@ -124,7 +139,7 @@ namespace QuestTag
 
             }
             formOpt.Close();
-
+            GlobalVar.UpdateDBList();
         }
 
         private void ListBoxTagGroup_MouseUp(object sender, MouseEventArgs e)
@@ -241,6 +256,7 @@ namespace QuestTag
 
 
             }
+            GlobalVar.UpdateDBList();
 
         }
     }
