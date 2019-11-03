@@ -1,6 +1,6 @@
 ﻿namespace QuestTag
 {
-    partial class FormOpt
+    partial class FormTagAdd
     {
         /// <summary>
         /// Required designer variable.

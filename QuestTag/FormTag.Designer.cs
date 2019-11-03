@@ -1,6 +1,6 @@
 ﻿namespace QuestTag
 {
-    partial class TagForm
+    partial class FormTag
     {
         /// <summary>
         /// Required designer variable.
@@ -90,30 +90,30 @@
             this.MenuModify,
             this.MenuDel});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(117, 94);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(117, 88);
             // 
             // MenuAdd
             // 
             this.MenuAdd.Name = "MenuAdd";
-            this.MenuAdd.Size = new System.Drawing.Size(116, 30);
+            this.MenuAdd.Size = new System.Drawing.Size(116, 28);
             this.MenuAdd.Text = "增加";
             this.MenuAdd.Click += new System.EventHandler(this.MenuAdd_Click);
             // 
             // MenuModify
             // 
             this.MenuModify.Name = "MenuModify";
-            this.MenuModify.Size = new System.Drawing.Size(116, 30);
+            this.MenuModify.Size = new System.Drawing.Size(116, 28);
             this.MenuModify.Text = "修改";
             this.MenuModify.Click += new System.EventHandler(this.MenuModfiy_Click);
             // 
             // MenuDel
             // 
             this.MenuDel.Name = "MenuDel";
-            this.MenuDel.Size = new System.Drawing.Size(116, 30);
+            this.MenuDel.Size = new System.Drawing.Size(116, 28);
             this.MenuDel.Text = "删除";
             this.MenuDel.Click += new System.EventHandler(this.MenuDel_Click);
             // 
-            // TagForm
+            // FormTag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -122,7 +122,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ListBoxTagGroup);
-            this.Name = "TagForm";
+            this.Name = "FormTag";
             this.Text = "TagForm";
             this.Load += new System.EventHandler(this.TagForm_Load);
             this.contextMenuStrip1.ResumeLayout(false);

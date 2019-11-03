@@ -29,9 +29,9 @@ namespace QuestTag
             //Visible = false;
             WindowState = FormWindowState.Minimized;
 
-            TagForm tagForm = new TagForm();
+            FormTag tagForm = new FormTag();
             tagForm.Show();
-            QuestForm questForm = new QuestForm();
+            FormQuestView questForm = new FormQuestView();
             questForm.Show();
             questForm.Activate();
         }
@@ -43,7 +43,7 @@ namespace QuestTag
             GlobalVar.globalDB.SetServer("127.0.0.1")
            .SetDataBase("edu")
            .SetUserID("root")
-           .SetPassword("1234qwer")
+           .SetPassword("1234!@#$qwer")
            //.SetPassword("12qw!@QW")
            .SetPort("3306")
            .SetCharset("utf8");

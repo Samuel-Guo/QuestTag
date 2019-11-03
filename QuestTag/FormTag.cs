@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace QuestTag
 {
-    public partial class TagForm : Form
+    public partial class FormTag : Form
     {
         private MysqlConnector globalDB = GlobalVar.globalDB;
         private Dictionary<string, Db_struct.Tag_group_def> cap_map_tag_group = new Dictionary<string, Db_struct.Tag_group_def>();
@@ -20,7 +20,7 @@ namespace QuestTag
         private Dictionary<string, Db_struct.Tag_def> cap_map_tag = new Dictionary<string, Db_struct.Tag_def>();
         private ListBox selectedBox;
         //   private ArrayList tag_Group_List = new ArrayList();
-        public TagForm()
+        public FormTag()
         {
             InitializeComponent();
         }
@@ -103,12 +103,12 @@ namespace QuestTag
 
         private void MenuModfiy_Click(object sender, EventArgs e)
         {
-            FormOpt formOpt;
+            FormTagAdd formOpt;
             string selectText = selectedBox.SelectedItem.ToString();
             if (selectedBox.Tag.ToString() == "Group")
             {
                
-                formOpt = new FormOpt("修改标签组", true, selectText, cap_map_tag_group[selectText].unique == 0 ? false : true);
+                formOpt = new FormTagAdd("修改标签组", true, selectText, cap_map_tag_group[selectText].unique == 0 ? false : true);
                 if (formOpt.ShowDialog() == DialogResult.OK)
                 {
                     string newTagGroup = formOpt.textString;
@@ -122,7 +122,7 @@ namespace QuestTag
             }
             else
             {
-                formOpt = new FormOpt("修改标签", false, selectText);
+                formOpt = new FormTagAdd("修改标签", false, selectText);
                 if (formOpt.ShowDialog() == DialogResult.OK)
                 {
                     int seletIdx = ListBoxTagGroup.SelectedIndex;
@@ -178,10 +178,10 @@ namespace QuestTag
 
         private void MenuAdd_Click(object sender, EventArgs e)
         {
-            FormOpt formOpt;
+            FormTagAdd formOpt;
             if (selectedBox.Tag.ToString() == "Group")
             {
-                formOpt = new FormOpt("增添标签组", true);
+                formOpt = new FormTagAdd("增添标签组", true);
                 if (formOpt.ShowDialog() == DialogResult.OK)
                 {
                     string newTagGroup = formOpt.textString;
@@ -195,7 +195,7 @@ namespace QuestTag
             }
             else
             {
-                formOpt = new FormOpt("增添标签", false);
+                formOpt = new FormTagAdd("增添标签", false);
                 if (formOpt.ShowDialog() == DialogResult.OK)
                 {
                     int seletIdx = ListBoxTagGroup.SelectedIndex;

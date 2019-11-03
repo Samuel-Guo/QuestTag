@@ -10,17 +10,18 @@ using System.Windows.Forms;
 
 namespace QuestTag
 {
-    public partial class FormOpt : Form
+    public partial class FormTagAdd : Form
     {
         public string textString;
         public bool isChecked;
-        public FormOpt(string formCaption,bool hasCheckBox,string textCaption ="",bool isChecked = false )
+        public FormTagAdd(string formCaption,bool hasCheckBox,string textCaption ="",bool isChecked = false )
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterParent;
             ShowIcon = false;
             ShowInTaskbar = false;
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Text = formCaption;
             textBox1.Text = textCaption;
             checkBox1.Visible = hasCheckBox;
