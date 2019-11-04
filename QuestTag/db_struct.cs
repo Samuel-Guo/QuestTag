@@ -34,5 +34,13 @@ namespace QuestTag
         }
         public const string quest_def_field = " id,caption,file_path,detail ";
 
+
+        public struct Quest_tag_map
+        {
+           public int quest_id;
+           public int tag_id;
+        }
+        public const string quest_tag_map_field = " quest_id,tag_id ";
+
     }
 }

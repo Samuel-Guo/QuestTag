@@ -77,9 +77,9 @@ namespace QuestTag
                 listTags.Items.Add(tagId);
             }
             label1.Text = selectQuest.file_path;
-            textBoxPath.Text = selectQuest.file_path;
+            //textBoxPath.Text = selectQuest.file_path;
             label2.Text = selectQuest.detail;
-            textBox1.Text = selectQuest.detail;
+            //textBox1.Text = selectQuest.detail;
             try
             {
                 pictureBox1.Load(selectQuest.file_path);
@@ -131,20 +131,21 @@ namespace QuestTag
             FormQuestAdd formAdd;
             if (selectedBox.Tag.ToString() == "Quest")
             {
-                formAdd = new FormQuestAdd();
+                formAdd = new FormQuestAdd("增加问题");
                 if (formAdd.ShowDialog() == DialogResult.OK)
                 {
-                        string questName = formAdd.QuestName;
-
+                    string questName = formAdd.QuestName;
+                    string questDetail = formAdd.QuestDetail;
+                    string questPath = formAdd.QuestPath;
                     //    int isUnique = formAdd.isChecked ? 1 : 0;
                     string getkeysql = "analyze table tag_group_def; ";
                     globalDB.ExeQuery(getkeysql);
                     getkeysql ="SELECT `AUTO_INCREMENT` FROM `information_schema`.`TABLES` WHERE `TABLE_SCHEMA`= 'edu' AND`TABLE_NAME`= 'quest_def';";
                     int newKeyIdx = globalDB.ReadDB<int>(getkeysql)[0];
 
-                    string sqlcmd = string.Format("INSERT INTO quest_def (`caption`) VALUES ('{0}' );", questName);
-
-                    if (globalDB.ExeUpdate(sqlcmd) == 0)
+                    string sqlcmd = string.Format("INSERT INTO quest_def (`caption`,`detail`,`file_path`) VALUES ('{0}','{1}','{2}' );", questName,questDetail,questPath);
+                    //sqlcmd =sqlcmd.Replace("\\", "\\\\");
+                    if (globalDB.ExeUpdate(sqlcmd.Replace("\\", "\\\\")) == 0)
                         MessageBox.Show("insert fail!");
 
                     foreach (var item in formAdd.listId_selectTagId_map)
@@ -181,6 +182,45 @@ namespace QuestTag
 
             //}
 
+
+        }
+
+        private void MenuModify_Click(object sender, EventArgs e)
+        {
+            FormQuestAdd formAdd;
+            if (selectedBox.Tag.ToString() == "Quest")
+            {
+                formAdd = new FormQuestAdd("编辑问题",listId_id_map[ selectedBox.SelectedIndex]);
+                if (formAdd.ShowDialog() == DialogResult.OK)
+                {
+                    string questName = formAdd.QuestName;
+                    string questDetail = formAdd.QuestDetail;
+                    string questPath = formAdd.QuestPath;
+                    //    int isUnique = formAdd.isChecked ? 1 : 0;
+                    string getkeysql = "analyze table tag_group_def; ";
+                    globalDB.ExeQuery(getkeysql);
+                    getkeysql = "SELECT `AUTO_INCREMENT` FROM `information_schema`.`TABLES` WHERE `TABLE_SCHEMA`= 'edu' AND`TABLE_NAME`= 'quest_def';";
+                    int newKeyIdx = globalDB.ReadDB<int>(getkeysql)[0];
+
+                    string sqlcmd = string.Format("INSERT INTO quest_def (`caption`,`detail`,`file_path`) VALUES ('{0}','{1}','{2}' );", questName, questDetail, questPath);
+                    //sqlcmd =sqlcmd.Replace("\\", "\\\\");
+                    if (globalDB.ExeUpdate(sqlcmd.Replace("\\", "\\\\")) == 0)
+                        MessageBox.Show("insert fail!");
+
+                    foreach (var item in formAdd.listId_selectTagId_map)
+                    {
+                        string tagsql = string.Format("INSERT INTO quest_tag_map (`quest_id`, `tag_id`) VALUES ({0}, {1});", newKeyIdx, item.Value);
+                        if (globalDB.ExeUpdate(tagsql) == 0)
+                            MessageBox.Show("insert fail!");
+
+                    }
+
+
+                    LoadListBox();
+                    formAdd.Close();
+
+                }
+            }
 
         }
     }
