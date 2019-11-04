@@ -62,6 +62,20 @@ namespace QuestTag
 
             }
 
+            string getgroupsql = "SELECT group_id FROM edu.tag_def where is_valid = 1; ";
+            var groupIds = globalDB.ReadDB<int>(getgroupsql);
+
+            foreach (var groupId in groupIds)
+            {
+                string tagsql = "SELECT id FROM tag_def where is_valid = 1 and group_id =  " + groupId + " ;";
+                var tagIds = globalDB.ReadDB<int>(tagsql);
+                HashSet<int> tagSet = new HashSet<int>(tagIds);
+
+                tagGroupId_tags_map[groupId] = tagSet;
+                //TODO:
+            }
+
+
 
         }
 
@@ -107,18 +121,6 @@ namespace QuestTag
 
         private void ListQuests_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            string getgroupsql = "SELECT group_id FROM edu.tag_def where is_valid = 1; ";
-            var groupIds = globalDB.ReadDB<int>(getgroupsql);
-
-            foreach (var groupId in groupIds)
-            {
-                string tagsql = "SELECT id FROM tag_def where is_valid = 1 and group_id =  " + groupId + " ;";
-                var tagIds = globalDB.ReadDB<int>(tagsql);
-                HashSet<int> tagSet = new HashSet<int>(tagIds);
-
-                tagGroupId_tags_map[groupId] = tagSet;
-                //TODO:
-            }
 
         }
     }
