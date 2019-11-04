@@ -30,8 +30,11 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.试题ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuQuest = new System.Windows.Forms.ToolStripMenuItem();
             this.标签ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.标签管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuTag = new System.Windows.Forms.ToolStripMenuItem();
+            this.ListQuests = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,34 +54,62 @@
             // 
             // 试题ToolStripMenuItem
             // 
+            this.试题ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuQuest});
             this.试题ToolStripMenuItem.Name = "试题ToolStripMenuItem";
             this.试题ToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
             this.试题ToolStripMenuItem.Text = "试题";
             // 
+            // MenuQuest
+            // 
+            this.MenuQuest.Name = "MenuQuest";
+            this.MenuQuest.Size = new System.Drawing.Size(270, 34);
+            this.MenuQuest.Text = "试题管理";
+            this.MenuQuest.Click += new System.EventHandler(this.MenuQuest_Click);
+            // 
             // 标签ToolStripMenuItem
             // 
             this.标签ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.标签管理ToolStripMenuItem});
+            this.MenuTag});
             this.标签ToolStripMenuItem.Name = "标签ToolStripMenuItem";
             this.标签ToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
             this.标签ToolStripMenuItem.Text = "标签";
             // 
-            // 标签管理ToolStripMenuItem
+            // MenuTag
             // 
-            this.标签管理ToolStripMenuItem.Name = "标签管理ToolStripMenuItem";
-            this.标签管理ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
-            this.标签管理ToolStripMenuItem.Text = "标签管理";
+            this.MenuTag.Name = "MenuTag";
+            this.MenuTag.Size = new System.Drawing.Size(270, 34);
+            this.MenuTag.Text = "标签管理";
+            this.MenuTag.Click += new System.EventHandler(this.MenuTag_Click);
+            // 
+            // ListQuests
+            // 
+            this.ListQuests.FormattingEnabled = true;
+            this.ListQuests.Location = new System.Drawing.Point(22, 52);
+            this.ListQuests.Name = "ListQuests";
+            this.ListQuests.Size = new System.Drawing.Size(280, 404);
+            this.ListQuests.TabIndex = 1;
+            this.ListQuests.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ListQuests_ItemCheck);
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(333, 52);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(246, 404);
+            this.checkedListBox1.TabIndex = 2;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1213, 480);
+            this.ClientSize = new System.Drawing.Size(1213, 516);
+            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.ListQuests);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "Form1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -92,7 +123,10 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 试题ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 标签ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 标签管理ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuTag;
+        private System.Windows.Forms.CheckedListBox ListQuests;
+        private System.Windows.Forms.ToolStripMenuItem MenuQuest;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }
 

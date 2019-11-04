@@ -22,6 +22,7 @@ namespace QuestTag
         //   private ArrayList tag_Group_List = new ArrayList();
         public FormTag()
         {
+            globalDB = GlobalVar.globalDB;
             InitializeComponent();
         }
 

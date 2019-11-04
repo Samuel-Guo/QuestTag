@@ -18,6 +18,7 @@ namespace QuestTag
         Dictionary<int, Db_struct.Tag_def> tag_map = new Dictionary<int, Db_struct.Tag_def>();
         private ListBox selectedBox;
         private MysqlConnector globalDB = GlobalVar.globalDB;
+        FormQuestAdd formAdd;
 
         public FormQuestView()
         {
@@ -128,9 +129,13 @@ namespace QuestTag
         
         private void MenuAdd_Click(object sender, EventArgs e)
         {
-            FormQuestAdd formAdd;
             if (selectedBox.Tag.ToString() == "Quest")
             {
+                string getkeysql = "analyze table quest_def; ";
+                globalDB.ExeQuery(getkeysql);
+                getkeysql = "SELECT `AUTO_INCREMENT` FROM `information_schema`.`TABLES` WHERE `TABLE_SCHEMA`= 'edu' AND`TABLE_NAME`= 'quest_def';";
+                int newKeyIdx = globalDB.ReadDB<int>(getkeysql)[0];
+
                 formAdd = new FormQuestAdd("增加问题");
                 if (formAdd.ShowDialog() == DialogResult.OK)
                 {
@@ -138,10 +143,6 @@ namespace QuestTag
                     string questDetail = formAdd.QuestDetail;
                     string questPath = formAdd.QuestPath;
                     //    int isUnique = formAdd.isChecked ? 1 : 0;
-                    string getkeysql = "analyze table tag_group_def; ";
-                    globalDB.ExeQuery(getkeysql);
-                    getkeysql ="SELECT `AUTO_INCREMENT` FROM `information_schema`.`TABLES` WHERE `TABLE_SCHEMA`= 'edu' AND`TABLE_NAME`= 'quest_def';";
-                    int newKeyIdx = globalDB.ReadDB<int>(getkeysql)[0];
 
                     string sqlcmd = string.Format("INSERT INTO quest_def (`caption`,`detail`,`file_path`) VALUES ('{0}','{1}','{2}' );", questName,questDetail,questPath);
                     //sqlcmd =sqlcmd.Replace("\\", "\\\\");
@@ -187,7 +188,6 @@ namespace QuestTag
 
         private void MenuModify_Click(object sender, EventArgs e)
         {
-            FormQuestAdd formAdd;
             if (selectedBox.Tag.ToString() == "Quest")
             {
                 formAdd = new FormQuestAdd("编辑问题",listId_id_map[ selectedBox.SelectedIndex]);
@@ -215,12 +215,25 @@ namespace QuestTag
 
                     }
 
-
                     LoadListBox();
-                    formAdd.Close();
-
                 }
+                formAdd.Close();
+
             }
+
+        }
+
+        private void MenuDel_Click(object sender, EventArgs e)
+        {
+            int questId = listId_id_map[listQuest.SelectedIndex];
+           var con= MessageBox.Show("确认要删除吗？","",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+           if(con==DialogResult.Yes)
+           {
+                string sqlcmd = string.Format("UPDATE quest_def set is_valid= 0 where id = {0} ;", questId);
+                if (globalDB.ExeUpdate(sqlcmd) == 0)
+                    MessageBox.Show("update fail!");
+           }
+            LoadListBox();
 
         }
     }
