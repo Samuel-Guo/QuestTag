@@ -21,6 +21,7 @@ namespace QuestTag
         List<SortedSet<int>> tagGroupQuest = new List<SortedSet<int>>();
         Dictionary<int, SortedSet<int>> tagId_quests_map = new Dictionary<int, SortedSet<int>>();
         Dictionary<int, HashSet<int>> tagGroupId_tags_map = new Dictionary<int, HashSet<int>>();
+        
 
         public FormMain()
         {
@@ -109,7 +110,6 @@ namespace QuestTag
         {
             string getgroupsql = "SELECT group_id FROM edu.tag_def where is_valid = 1; ";
             var groupIds = globalDB.ReadDB<int>(getgroupsql);
-
             foreach (var groupId in groupIds)
             {
                 string tagsql = "SELECT id FROM tag_def where is_valid = 1 and group_id =  " + groupId + " ;";
@@ -119,7 +119,45 @@ namespace QuestTag
                 tagGroupId_tags_map[groupId] = tagSet;
                 //TODO:
             }
+            HashSet<int> selectTagIds = new HashSet<int>();
+            var selectQuestIndex = ListQuests.SelectedIndices;
+            foreach (int item in selectQuestIndex)
+            {
+                selectTagIds.Add(listId_tagId_map[item]);
+            }
+            SortedSet<int> allQuestSet = new SortedSet<int>();
 
+            string sqlcmd = "SELECT * FROM quest_def where is_valid=1;";
+            var quests = GlobalVar.globalDB.ReadDB<Db_struct.Quest_def>(sqlcmd);
+            foreach (var quest in quests)
+            {
+                quests_map.Add(quest.id, quest);
+                allQuestSet.Add(quest.id);
+            }
+
+
+          //  List<SortedSet<int>> selectQuestId = new List<SortedSet<int>>();
+
+            foreach (var it_group in tagGroupId_tags_map)
+            {
+                SortedSet<int> singleGroupQuestSet = new SortedSet<int>();
+
+                foreach (var item in it_group.Value)
+                {
+                    if(selectTagIds.Contains(item))
+                    {
+                        string questsql = "SELECT quest_id FROM quest_tag_map where tag_id = "+item +" ;";
+                        var questIds = globalDB.ReadDB<int>(questsql);
+                        SortedSet<int> questTagSet = new SortedSet<int>(questIds);
+
+                        singleGroupQuestSet.UnionWith(questTagSet);
+      
+                    }
+
+                }
+                allQuestSet.IntersectWith(singleGroupQuestSet);
+
+            }
         }
     }
 }

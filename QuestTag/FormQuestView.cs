@@ -33,12 +33,13 @@ namespace QuestTag
 
         private void LoadListBox()
         {
-            string sqlcmd = "SELECT * FROM quest_def where is_valid=1;";
-            var quests = GlobalVar.globalDB.ReadDB<Db_struct.Quest_def>(sqlcmd);
             int i = 0;
             listQuest.Items.Clear();
             listId_id_map.Clear();
             quests_map.Clear();
+
+            string sqlcmd = "SELECT * FROM quest_def where is_valid=1;";
+            var quests = GlobalVar.globalDB.ReadDB<Db_struct.Quest_def>(sqlcmd);
             foreach (var quest in quests)
             {
                 listId_id_map.Add(i++, quest.id);
