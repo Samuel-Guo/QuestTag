@@ -21,7 +21,7 @@ namespace QuestTag
         List<SortedSet<int>> tagGroupQuest = new List<SortedSet<int>>();
         Dictionary<int, SortedSet<int>> tagId_quests_map = new Dictionary<int, SortedSet<int>>();
         Dictionary<int, HashSet<int>> tagGroupId_tags_map = new Dictionary<int, HashSet<int>>();
-        
+        Dictionary<int, int> selectlistId_quest_map = new Dictionary<int, int>();
 
         public FormMain()
         {
@@ -108,6 +108,15 @@ namespace QuestTag
 
         private void ListQuests_ItemCheck(object sender, ItemCheckEventArgs e)
         {
+            
+        }
+
+        private void ListQuests_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
             string getgroupsql = "SELECT group_id FROM edu.tag_def where is_valid = 1; ";
             var groupIds = globalDB.ReadDB<int>(getgroupsql);
             foreach (var groupId in groupIds)
@@ -120,7 +129,7 @@ namespace QuestTag
                 //TODO:
             }
             HashSet<int> selectTagIds = new HashSet<int>();
-            var selectQuestIndex = ListQuests.SelectedIndices;
+            var selectQuestIndex = ListQuests.CheckedIndices;
             foreach (int item in selectQuestIndex)
             {
                 selectTagIds.Add(listId_tagId_map[item]);
@@ -129,6 +138,7 @@ namespace QuestTag
 
             string sqlcmd = "SELECT * FROM quest_def where is_valid=1;";
             var quests = GlobalVar.globalDB.ReadDB<Db_struct.Quest_def>(sqlcmd);
+            quests_map.Clear();
             foreach (var quest in quests)
             {
                 quests_map.Add(quest.id, quest);
@@ -136,7 +146,7 @@ namespace QuestTag
             }
 
 
-          //  List<SortedSet<int>> selectQuestId = new List<SortedSet<int>>();
+            //  List<SortedSet<int>> selectQuestId = new List<SortedSet<int>>();
 
             foreach (var it_group in tagGroupId_tags_map)
             {
@@ -144,25 +154,43 @@ namespace QuestTag
 
                 foreach (var item in it_group.Value)
                 {
-                    if(selectTagIds.Contains(item))
+                    if (selectTagIds.Contains(item))
                     {
-                        string questsql = "SELECT quest_id FROM quest_tag_map where tag_id = "+item +" ;";
+                        string questsql = "SELECT quest_id FROM quest_tag_map where tag_id = " + item + " ;";
                         var questIds = globalDB.ReadDB<int>(questsql);
                         SortedSet<int> questTagSet = new SortedSet<int>(questIds);
 
                         singleGroupQuestSet.UnionWith(questTagSet);
-      
+
                     }
 
                 }
                 allQuestSet.IntersectWith(singleGroupQuestSet);
 
             }
+            ListSelectedQuest.Items.Clear();
+            foreach (var item in allQuestSet)
+            {
+                int addIndex =ListSelectedQuest.Items.Add(quests_map[item].caption);
+                selectlistId_quest_map[addIndex] = quests_map[item].id;
+            }
+
+
         }
 
-        private void ListQuests_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListSelectedQuest_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var selectQuesId = selectlistId_quest_map[ListSelectedQuest.SelectedIndex];
+            try
+            {
+                pictureBox1.Load(quests_map[selectQuesId].file_path);
 
+            }
+            catch (Exception)
+            {
+
+               // throw;
+            }
         }
     }
 }
