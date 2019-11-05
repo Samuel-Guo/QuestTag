@@ -159,5 +159,10 @@ namespace QuestTag
 
             }
         }
+
+        private void ListQuests_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -63,7 +63,7 @@
             // MenuQuest
             // 
             this.MenuQuest.Name = "MenuQuest";
-            this.MenuQuest.Size = new System.Drawing.Size(270, 34);
+            this.MenuQuest.Size = new System.Drawing.Size(182, 34);
             this.MenuQuest.Text = "试题管理";
             this.MenuQuest.Click += new System.EventHandler(this.MenuQuest_Click);
             // 
@@ -78,7 +78,7 @@
             // MenuTag
             // 
             this.MenuTag.Name = "MenuTag";
-            this.MenuTag.Size = new System.Drawing.Size(270, 34);
+            this.MenuTag.Size = new System.Drawing.Size(182, 34);
             this.MenuTag.Text = "标签管理";
             this.MenuTag.Click += new System.EventHandler(this.MenuTag_Click);
             // 
@@ -90,6 +90,7 @@
             this.ListQuests.Size = new System.Drawing.Size(280, 404);
             this.ListQuests.TabIndex = 1;
             this.ListQuests.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ListQuests_ItemCheck);
+            this.ListQuests.SelectedIndexChanged += new System.EventHandler(this.ListQuests_SelectedIndexChanged);
             // 
             // checkedListBox1
             // 
