@@ -74,7 +74,6 @@ namespace SamuelSpace
             mysqlcon.Open();
             MySqlCommand mysqlcom = new MySqlCommand(M_str_sqlstr, mysqlcon);
             int row_affected =mysqlcom.ExecuteNonQuery();
-            mysqlcom.Dispose();
             mysqlcon.Close();
             mysqlcon.Dispose();
             return row_affected;
@@ -87,22 +86,26 @@ namespace SamuelSpace
         /// </summary>
         /// <param name="M_str_sqlstr">SQL语句</param>
         /// <returns>返回MySqlDataReader对象</returns>
-        public MySqlDataReader ExeQuery(string M_str_sqlstr)
+        public MySqlDataReader ExeQuery(string M_str_sqlstr,bool closeConnection=true)
         {
             Console.WriteLine(M_str_sqlstr);
             MySqlConnection mysqlcon = this.GetMysqlConnection();
             MySqlCommand mysqlcom = new MySqlCommand(M_str_sqlstr, mysqlcon);
             mysqlcon.Open();
             MySqlDataReader mysqlread = mysqlcom.ExecuteReader(CommandBehavior.CloseConnection);
-           // mysqlcon.Close();
-            return mysqlread;
+            if (closeConnection)
+            {
+                mysqlcon.Close();
+                mysqlcon.Dispose();
+            }
+                return mysqlread;
 
         }
         #endregion
 
         public System.Collections.Generic.List<T> ReadDB<T>(string sqlcmd)
         {
-            var tags = this.ExeQuery(sqlcmd);
+            var tags = this.ExeQuery(sqlcmd,false);
             System.Collections.Generic.List<T> list = new System.Collections.Generic.List<T>();
 
             Type type = typeof(T);
@@ -145,6 +148,8 @@ namespace SamuelSpace
                     list.Add((T)db_struct);
                 }
             }
+            tags.Close();
+            tags.Dispose();
             return list;
         }
 

@@ -84,7 +84,7 @@ namespace QuestTag
             //textBox1.Text = selectQuest.detail;
             try
             {
-                pictureBox1.Load(selectQuest.file_path);
+                pictureQuest.Load(selectQuest.file_path);
 
             }
             catch (Exception)

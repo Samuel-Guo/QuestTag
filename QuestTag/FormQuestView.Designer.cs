@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.listQuest = new System.Windows.Forms.ListBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureQuest = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.listTags = new System.Windows.Forms.ListBox();
@@ -39,10 +39,10 @@
             this.MenuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuModify = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuDel = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.buttonSave = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureAnswer = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureQuest)).BeginInit();
             this.MenuPop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureAnswer)).BeginInit();
             this.SuspendLayout();
             // 
             // listQuest
@@ -57,14 +57,14 @@
             this.listQuest.SelectedIndexChanged += new System.EventHandler(this.listQuest_SelectedIndexChanged);
             this.listQuest.MouseUp += new System.Windows.Forms.MouseEventHandler(this.listQuest_MouseUp);
             // 
-            // pictureBox1
+            // pictureQuest
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(476, 67);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(382, 274);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.pictureQuest.Location = new System.Drawing.Point(476, 67);
+            this.pictureQuest.Name = "pictureQuest";
+            this.pictureQuest.Size = new System.Drawing.Size(382, 237);
+            this.pictureQuest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureQuest.TabIndex = 1;
+            this.pictureQuest.TabStop = false;
             // 
             // label1
             // 
@@ -112,7 +112,7 @@
             this.MenuModify,
             this.MenuDel});
             this.MenuPop.Name = "MenuPop";
-            this.MenuPop.Size = new System.Drawing.Size(241, 127);
+            this.MenuPop.Size = new System.Drawing.Size(117, 94);
             // 
             // MenuAdd
             // 
@@ -124,53 +124,44 @@
             // MenuModify
             // 
             this.MenuModify.Name = "MenuModify";
-            this.MenuModify.Size = new System.Drawing.Size(240, 30);
+            this.MenuModify.Size = new System.Drawing.Size(116, 30);
             this.MenuModify.Text = "修改";
             this.MenuModify.Click += new System.EventHandler(this.MenuModify_Click);
             // 
             // MenuDel
             // 
             this.MenuDel.Name = "MenuDel";
-            this.MenuDel.Size = new System.Drawing.Size(240, 30);
+            this.MenuDel.Size = new System.Drawing.Size(116, 30);
             this.MenuDel.Text = "删除";
             this.MenuDel.Click += new System.EventHandler(this.MenuDel_Click);
             // 
-            // button1
+            // pictureAnswer
             // 
-            this.button1.Location = new System.Drawing.Point(710, 437);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 40);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "修改";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.Location = new System.Drawing.Point(805, 437);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(89, 40);
-            this.buttonSave.TabIndex = 9;
-            this.buttonSave.Text = "保存";
-            this.buttonSave.UseVisualStyleBackColor = true;
+            this.pictureAnswer.Location = new System.Drawing.Point(481, 339);
+            this.pictureAnswer.Name = "pictureAnswer";
+            this.pictureAnswer.Size = new System.Drawing.Size(376, 126);
+            this.pictureAnswer.TabIndex = 6;
+            this.pictureAnswer.TabStop = false;
             // 
             // FormQuestView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 533);
-            this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.pictureAnswer);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureQuest);
             this.Controls.Add(this.listTags);
             this.Controls.Add(this.listQuest);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormQuestView";
             this.Text = "QuestForm";
             this.Load += new System.EventHandler(this.QuestForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureQuest)).EndInit();
             this.MenuPop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureAnswer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,7 +170,7 @@
         #endregion
 
         private System.Windows.Forms.ListBox listQuest;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureQuest;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox listTags;
@@ -188,7 +179,6 @@
         private System.Windows.Forms.ToolStripMenuItem MenuAdd;
         private System.Windows.Forms.ToolStripMenuItem MenuModify;
         private System.Windows.Forms.ToolStripMenuItem MenuDel;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.PictureBox pictureAnswer;
     }
 }

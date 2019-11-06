@@ -108,15 +108,6 @@ namespace QuestTag
 
         private void ListQuests_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            
-        }
-
-        private void ListQuests_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
             string getgroupsql = "SELECT group_id FROM edu.tag_def where is_valid = 1; ";
             var groupIds = globalDB.ReadDB<int>(getgroupsql);
             foreach (var groupId in groupIds)
@@ -134,6 +125,12 @@ namespace QuestTag
             {
                 selectTagIds.Add(listId_tagId_map[item]);
             }
+            if (e.NewValue == CheckState.Checked)
+                selectTagIds.Add(listId_tagId_map[e.Index]);
+            else
+                selectTagIds.Remove(listId_tagId_map[e.Index]);
+
+
             SortedSet<int> allQuestSet = new SortedSet<int>();
 
             string sqlcmd = "SELECT * FROM quest_def where is_valid=1;";
@@ -171,16 +168,48 @@ namespace QuestTag
             ListSelectedQuest.Items.Clear();
             foreach (var item in allQuestSet)
             {
-                int addIndex =ListSelectedQuest.Items.Add(quests_map[item].caption);
+                int addIndex = ListSelectedQuest.Items.Add(quests_map[item].caption);
                 selectlistId_quest_map[addIndex] = quests_map[item].id;
             }
 
+        }
+
+        private void ListQuests_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<int> selectQuestId=new  List<int>();
+            foreach (var item in selectlistId_quest_map)
+            {
+                selectQuestId.Add(item.Value);
+            }
+            var newQueue = RandomSort<int>(selectQuestId);
+            ListSelectedQuest.Items.Clear();
+
+            for (int i = 0; i < selectlistId_quest_map.Count; i++)
+            {
+                selectlistId_quest_map[i] = newQueue[i];
+                ListSelectedQuest.Items.Add(quests_map[newQueue[i]].caption);
+            }
 
         }
 
+        private List<T> RandomSort<T>(List<T> list)
+        {
+            var random = new Random();
+            var newList = new List<T>();
+            foreach (var item in list)
+            {
+                newList.Insert(random.Next(newList.Count), item);
+            }
+            return newList;
+        }
         private void ListSelectedQuest_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectQuesId = selectlistId_quest_map[ListSelectedQuest.SelectedIndex];
+            labelDetail.Text = quests_map[selectQuesId].detail;
             try
             {
                 pictureBox1.Load(quests_map[selectQuesId].file_path);
@@ -191,6 +220,12 @@ namespace QuestTag
 
                // throw;
             }
+        }
+
+        private void checkBoxRevealAnswer_CheckedChanged(object sender, EventArgs e)
+        {
+            labelAnswer.Visible = checkBoxRevealAnswer.Checked;
+            pictureAnswer.Visible = checkBoxRevealAnswer.Checked;
         }
     }
 }

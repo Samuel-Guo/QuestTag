@@ -31,8 +31,10 @@ namespace QuestTag
             public string caption;
             public string file_path;
             public string detail;
+            public string answer_text;
+            public string answer_picture;
         }
-        public const string quest_def_field = " id,caption,file_path,detail ";
+        public const string quest_def_field = " id,caption,file_path,detail,answer_text,answer_picture ";
 
 
         public struct Quest_tag_map
