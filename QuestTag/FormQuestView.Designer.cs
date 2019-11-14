@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.listQuest = new System.Windows.Forms.ListBox();
             this.pictureQuest = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelQuestPath = new System.Windows.Forms.Label();
+            this.labelQuestDetail = new System.Windows.Forms.Label();
             this.listTags = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.MenuPop = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -40,6 +40,8 @@
             this.MenuModify = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuDel = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureAnswer = new System.Windows.Forms.PictureBox();
+            this.labelAnswerPath = new System.Windows.Forms.Label();
+            this.labelAnswerDetail = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureQuest)).BeginInit();
             this.MenuPop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAnswer)).BeginInit();
@@ -66,23 +68,23 @@
             this.pictureQuest.TabIndex = 1;
             this.pictureQuest.TabStop = false;
             // 
-            // label1
+            // labelQuestPath
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(125, 448);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 18);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "label1";
+            this.labelQuestPath.AutoSize = true;
+            this.labelQuestPath.Location = new System.Drawing.Point(538, 318);
+            this.labelQuestPath.Name = "labelQuestPath";
+            this.labelQuestPath.Size = new System.Drawing.Size(62, 18);
+            this.labelQuestPath.TabIndex = 2;
+            this.labelQuestPath.Text = "label1";
             // 
-            // label2
+            // labelQuestDetail
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(45, 393);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 18);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "label2";
+            this.labelQuestDetail.AutoSize = true;
+            this.labelQuestDetail.Location = new System.Drawing.Point(45, 375);
+            this.labelQuestDetail.Name = "labelQuestDetail";
+            this.labelQuestDetail.Size = new System.Drawing.Size(62, 18);
+            this.labelQuestDetail.TabIndex = 3;
+            this.labelQuestDetail.Text = "label2";
             // 
             // listTags
             // 
@@ -98,7 +100,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(45, 448);
+            this.label3.Location = new System.Drawing.Point(478, 318);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 18);
             this.label3.TabIndex = 5;
@@ -143,15 +145,35 @@
             this.pictureAnswer.TabIndex = 6;
             this.pictureAnswer.TabStop = false;
             // 
+            // labelAnswerPath
+            // 
+            this.labelAnswerPath.AutoSize = true;
+            this.labelAnswerPath.Location = new System.Drawing.Point(486, 488);
+            this.labelAnswerPath.Name = "labelAnswerPath";
+            this.labelAnswerPath.Size = new System.Drawing.Size(62, 18);
+            this.labelAnswerPath.TabIndex = 7;
+            this.labelAnswerPath.Text = "label1";
+            // 
+            // labelAnswerDetail
+            // 
+            this.labelAnswerDetail.AutoSize = true;
+            this.labelAnswerDetail.Location = new System.Drawing.Point(45, 447);
+            this.labelAnswerDetail.Name = "labelAnswerDetail";
+            this.labelAnswerDetail.Size = new System.Drawing.Size(62, 18);
+            this.labelAnswerDetail.TabIndex = 8;
+            this.labelAnswerDetail.Text = "label1";
+            // 
             // FormQuestView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 533);
+            this.Controls.Add(this.labelAnswerDetail);
+            this.Controls.Add(this.labelAnswerPath);
             this.Controls.Add(this.pictureAnswer);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelQuestDetail);
+            this.Controls.Add(this.labelQuestPath);
             this.Controls.Add(this.pictureQuest);
             this.Controls.Add(this.listTags);
             this.Controls.Add(this.listQuest);
@@ -171,8 +193,8 @@
 
         private System.Windows.Forms.ListBox listQuest;
         private System.Windows.Forms.PictureBox pictureQuest;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelQuestPath;
+        private System.Windows.Forms.Label labelQuestDetail;
         private System.Windows.Forms.ListBox listTags;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ContextMenuStrip MenuPop;
@@ -180,5 +202,7 @@
         private System.Windows.Forms.ToolStripMenuItem MenuModify;
         private System.Windows.Forms.ToolStripMenuItem MenuDel;
         private System.Windows.Forms.PictureBox pictureAnswer;
+        private System.Windows.Forms.Label labelAnswerPath;
+        private System.Windows.Forms.Label labelAnswerDetail;
     }
 }

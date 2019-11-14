@@ -78,13 +78,17 @@ namespace QuestTag
             {
                 listTags.Items.Add(tagId);
             }
-            label1.Text = selectQuest.file_path;
+            labelQuestPath.Text = selectQuest.file_path;
             //textBoxPath.Text = selectQuest.file_path;
-            label2.Text = selectQuest.detail;
+            labelQuestDetail.Text = selectQuest.detail;
+
+            labelAnswerDetail.Text = selectQuest.answer_text;
+            labelAnswerPath.Text = selectQuest.answer_picture;
             //textBox1.Text = selectQuest.detail;
             try
             {
                 pictureQuest.Load(selectQuest.file_path);
+                pictureAnswer.Load(selectQuest.answer_picture);
 
             }
             catch (Exception)
@@ -143,10 +147,11 @@ namespace QuestTag
                     string questName = formAdd.QuestName;
                     string questDetail = formAdd.QuestDetail;
                     string questPath = formAdd.QuestPath;
-                    //    int isUnique = formAdd.isChecked ? 1 : 0;
-
-                    string sqlcmd = string.Format("INSERT INTO quest_def (`caption`,`detail`,`file_path`) VALUES ('{0}','{1}','{2}' );", questName,questDetail,questPath);
-                    //sqlcmd =sqlcmd.Replace("\\", "\\\\");
+                    string answerDetail = formAdd.AnswerDetail;
+                    string answerPath = formAdd.AnswerPath;
+                    string sqlcmd = string.Format("INSERT INTO quest_def (`caption`,`detail`,`file_path`,`answer_text`,`answer_picture`) " +
+                        "VALUES ('{0}','{1}','{2}' ,'{3}','{4}');"
+                        , questName,questDetail,questPath, answerDetail, answerPath);
                     if (globalDB.ExeUpdate(sqlcmd.Replace("\\", "\\\\")) == 0)
                         MessageBox.Show("insert fail!");
 
@@ -197,14 +202,17 @@ namespace QuestTag
                     string questName = formAdd.QuestName;
                     string questDetail = formAdd.QuestDetail;
                     string questPath = formAdd.QuestPath;
-                    //    int isUnique = formAdd.isChecked ? 1 : 0;
+                    string answerDetail = formAdd.AnswerDetail;
+                    string answerPath = formAdd.AnswerPath;
+
                     string getkeysql = "analyze table tag_group_def; ";
                     globalDB.ExeQuery(getkeysql);
                     getkeysql = "SELECT `AUTO_INCREMENT` FROM `information_schema`.`TABLES` WHERE `TABLE_SCHEMA`= 'edu' AND`TABLE_NAME`= 'quest_def';";
                     int newKeyIdx = globalDB.ReadDB<int>(getkeysql)[0];
 
-                    string sqlcmd = string.Format("INSERT INTO quest_def (`caption`,`detail`,`file_path`) VALUES ('{0}','{1}','{2}' );", questName, questDetail, questPath);
-                    //sqlcmd =sqlcmd.Replace("\\", "\\\\");
+                    string sqlcmd = string.Format("INSERT INTO quest_def (`caption`,`detail`,`file_path`,`answer_text`,`answer_picture`) " +
+                        "VALUES ('{0}','{1}','{2}' ,'{3}','{4}');"
+                        , questName, questDetail, questPath, answerDetail, answerPath);
                     if (globalDB.ExeUpdate(sqlcmd.Replace("\\", "\\\\")) == 0)
                         MessageBox.Show("insert fail!");
 

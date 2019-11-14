@@ -88,7 +88,7 @@ namespace QuestTag
 
            int group_id = cap_map_tag_group[tagGroupName].id;
             string sqlcmd = string.Format("SELECT * FROM edu.tag_def where is_valid = 1 and group_id ={0} ;", group_id);
-            var tags = globalDB.ExeQuery(sqlcmd);
+            var tags = globalDB.ExeQuery(sqlcmd,false);
             while (tags.Read())
             {
                 Db_struct.Tag_def tag = new Db_struct.Tag_def();

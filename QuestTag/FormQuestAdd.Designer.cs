@@ -39,8 +39,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textAnswer = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textAnswerPath = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listBoxTags
@@ -67,9 +70,9 @@
             // 
             // textQuestName
             // 
-            this.textQuestName.Location = new System.Drawing.Point(44, 25);
+            this.textQuestName.Location = new System.Drawing.Point(150, 25);
             this.textQuestName.Name = "textQuestName";
-            this.textQuestName.Size = new System.Drawing.Size(384, 28);
+            this.textQuestName.Size = new System.Drawing.Size(308, 28);
             this.textQuestName.TabIndex = 2;
             // 
             // btnOK
@@ -94,10 +97,10 @@
             // 
             // textQuestDetail
             // 
-            this.textQuestDetail.Location = new System.Drawing.Point(486, 74);
+            this.textQuestDetail.Location = new System.Drawing.Point(485, 75);
             this.textQuestDetail.Multiline = true;
             this.textQuestDetail.Name = "textQuestDetail";
-            this.textQuestDetail.Size = new System.Drawing.Size(213, 253);
+            this.textQuestDetail.Size = new System.Drawing.Size(213, 252);
             this.textQuestDetail.TabIndex = 5;
             // 
             // label1
@@ -122,9 +125,10 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(52, 29);
             this.button1.TabIndex = 8;
+            this.button1.Tag = "Quest";
             this.button1.Text = "...";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.buttonSetPath);
             // 
             // textAnswer
             // 
@@ -143,12 +147,12 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Answer：";
             // 
-            // textBox1
+            // textAnswerPath
             // 
-            this.textBox1.Location = new System.Drawing.Point(96, 400);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(482, 28);
-            this.textBox1.TabIndex = 7;
+            this.textAnswerPath.Location = new System.Drawing.Point(96, 400);
+            this.textAnswerPath.Name = "textAnswerPath";
+            this.textAnswerPath.Size = new System.Drawing.Size(482, 28);
+            this.textAnswerPath.TabIndex = 7;
             // 
             // button2
             // 
@@ -156,19 +160,50 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(52, 29);
             this.button2.TabIndex = 8;
+            this.button2.Tag = "Answer";
             this.button2.Text = "...";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button1_Click);
+            this.button2.Click += new System.EventHandler(this.buttonSetPath);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(482, 35);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(98, 18);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "试题描述：";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(46, 28);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(98, 18);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "试题名称：";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(721, 35);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(98, 18);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "答案描述：";
             // 
             // FormQuestAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(964, 453);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.textAnswer);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textAnswerPath);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textQuestPath);
             this.Controls.Add(this.label1);
@@ -199,7 +234,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textAnswer;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textAnswerPath;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

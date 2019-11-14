@@ -21,7 +21,7 @@ namespace QuestTag
         private static void ReadTagList()
         {
             string sqlcmd = string.Format("SELECT * FROM edu.tag_def where is_valid = 1;");
-            var tags = globalDB.ExeQuery(sqlcmd);
+            var tags = globalDB.ExeQuery(sqlcmd,false);
             while (tags.Read())
             {
                 Db_struct.Tag_def tag = new Db_struct.Tag_def();

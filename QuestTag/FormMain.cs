@@ -38,8 +38,14 @@ namespace QuestTag
         {
             //Visible = false;
             //WindowState = FormWindowState.Minimized;
+            Size = new Size(1050, 550);
 
+            UpdateQuestList();
 
+        }
+
+        private void UpdateQuestList()
+        {
             ListQuests.Items.Clear();
             listId_tagId_map.Clear();
 
@@ -49,7 +55,7 @@ namespace QuestTag
 
             foreach (var tags in tag_list)
             {
-               int addIndex = ListQuests.Items.Add(tags.caption);
+                int addIndex = ListQuests.Items.Add(tags.caption);
                 listId_tagId_map.Add(addIndex, tags.id);
                 string tagsql = "SELECT quest_id FROM quest_tag_map where is_valid = 1 and tag_id =  " + tags.id + " ;";
                 var questIds = globalDB.ReadDB<int>(tagsql);
@@ -62,10 +68,7 @@ namespace QuestTag
                 //ListBoxTagGroup.Items.Add(tag_Group.caption);
 
             }
-
-
         }
-
 
         private static void InitDBconf()
         {
@@ -209,11 +212,13 @@ namespace QuestTag
         private void ListSelectedQuest_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectQuesId = selectlistId_quest_map[ListSelectedQuest.SelectedIndex];
-            labelDetail.Text = quests_map[selectQuesId].detail;
+            var selectQuest = quests_map[selectQuesId];
+            labelDetail.Text = selectQuest.detail;
+            labelAnswer.Text = selectQuest.answer_text;
             try
             {
-                pictureBox1.Load(quests_map[selectQuesId].file_path);
-
+                pictureQuest.Load(selectQuest.file_path);
+                pictureAnswer.Load(selectQuest.answer_picture);
             }
             catch (Exception)
             {
@@ -226,6 +231,12 @@ namespace QuestTag
         {
             labelAnswer.Visible = checkBoxRevealAnswer.Checked;
             pictureAnswer.Visible = checkBoxRevealAnswer.Checked;
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            UpdateQuestList();
+
         }
     }
 }

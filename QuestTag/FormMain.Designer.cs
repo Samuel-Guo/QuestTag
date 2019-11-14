@@ -33,17 +33,18 @@
             this.MenuQuest = new System.Windows.Forms.ToolStripMenuItem();
             this.标签ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuTag = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ListQuests = new System.Windows.Forms.CheckedListBox();
             this.ListSelectedQuest = new System.Windows.Forms.CheckedListBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureQuest = new System.Windows.Forms.PictureBox();
             this.labelDetail = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelAnswer = new System.Windows.Forms.Label();
-            this.checkBoxRevealAnswer = new System.Windows.Forms.CheckBox();
             this.pictureAnswer = new System.Windows.Forms.PictureBox();
+            this.checkBoxRevealAnswer = new System.Windows.Forms.CheckBox();
+            this.labelAnswer = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureQuest)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAnswer)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +58,7 @@
             this.标签ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1526, 32);
+            this.menuStrip1.Size = new System.Drawing.Size(1529, 32);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -80,7 +81,8 @@
             // 标签ToolStripMenuItem
             // 
             this.标签ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuTag});
+            this.MenuTag,
+            this.toolStripMenuItem1});
             this.标签ToolStripMenuItem.Name = "标签ToolStripMenuItem";
             this.标签ToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
             this.标签ToolStripMenuItem.Text = "标签";
@@ -88,9 +90,16 @@
             // MenuTag
             // 
             this.MenuTag.Name = "MenuTag";
-            this.MenuTag.Size = new System.Drawing.Size(182, 34);
+            this.MenuTag.Size = new System.Drawing.Size(270, 34);
             this.MenuTag.Text = "标签管理";
             this.MenuTag.Click += new System.EventHandler(this.MenuTag_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
+            this.toolStripMenuItem1.Text = "刷新";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // ListQuests
             // 
@@ -121,13 +130,13 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // pictureBox1
+            // pictureQuest
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(22, 457);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1398, 568);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
+            this.pictureQuest.Location = new System.Drawing.Point(22, 457);
+            this.pictureQuest.Name = "pictureQuest";
+            this.pictureQuest.Size = new System.Drawing.Size(1398, 568);
+            this.pictureQuest.TabIndex = 4;
+            this.pictureQuest.TabStop = false;
             // 
             // labelDetail
             // 
@@ -150,14 +159,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "答案";
             // 
-            // labelAnswer
+            // pictureAnswer
             // 
-            this.labelAnswer.AutoSize = true;
-            this.labelAnswer.Location = new System.Drawing.Point(28, 37);
-            this.labelAnswer.Name = "labelAnswer";
-            this.labelAnswer.Size = new System.Drawing.Size(62, 18);
-            this.labelAnswer.TabIndex = 0;
-            this.labelAnswer.Text = "label1";
+            this.pictureAnswer.Location = new System.Drawing.Point(31, 108);
+            this.pictureAnswer.Name = "pictureAnswer";
+            this.pictureAnswer.Size = new System.Drawing.Size(596, 213);
+            this.pictureAnswer.TabIndex = 2;
+            this.pictureAnswer.TabStop = false;
             // 
             // checkBoxRevealAnswer
             // 
@@ -170,34 +178,34 @@
             this.checkBoxRevealAnswer.UseVisualStyleBackColor = true;
             this.checkBoxRevealAnswer.CheckedChanged += new System.EventHandler(this.checkBoxRevealAnswer_CheckedChanged);
             // 
-            // pictureAnswer
+            // labelAnswer
             // 
-            this.pictureAnswer.Location = new System.Drawing.Point(31, 108);
-            this.pictureAnswer.Name = "pictureAnswer";
-            this.pictureAnswer.Size = new System.Drawing.Size(596, 213);
-            this.pictureAnswer.TabIndex = 2;
-            this.pictureAnswer.TabStop = false;
+            this.labelAnswer.AutoSize = true;
+            this.labelAnswer.Location = new System.Drawing.Point(28, 37);
+            this.labelAnswer.Name = "labelAnswer";
+            this.labelAnswer.Size = new System.Drawing.Size(62, 18);
+            this.labelAnswer.TabIndex = 0;
+            this.labelAnswer.Text = "label1";
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1526, 1050);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(1529, 1046);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelDetail);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureQuest);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ListSelectedQuest);
             this.Controls.Add(this.ListQuests);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
-            this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureQuest)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAnswer)).EndInit();
@@ -216,12 +224,13 @@
         private System.Windows.Forms.ToolStripMenuItem MenuQuest;
         private System.Windows.Forms.CheckedListBox ListSelectedQuest;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureQuest;
         private System.Windows.Forms.Label labelDetail;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureAnswer;
         private System.Windows.Forms.CheckBox checkBoxRevealAnswer;
         private System.Windows.Forms.Label labelAnswer;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
 

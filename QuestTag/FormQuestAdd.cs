@@ -17,7 +17,7 @@ namespace QuestTag
         private Dictionary<int, int> tagId_groupId_map = new Dictionary<int, int>();
         private Dictionary<int, int> listId_tagId_map = new Dictionary<int, int>();
         public Dictionary<int, int> listId_selectTagId_map = new Dictionary<int, int>();
-        public string QuestName,QuestDetail,QuestPath;
+        public string QuestName,QuestDetail,QuestPath,AnswerPath,AnswerDetail;
         private string InitialDirectory;
 
         public FormQuestAdd(string formCaption,int questId=0)
@@ -157,6 +157,8 @@ namespace QuestTag
             QuestName = textQuestName.Text;
             QuestDetail = textQuestDetail.Text;
             QuestPath = textQuestPath.Text;
+            AnswerPath = textAnswerPath.Text;
+            AnswerDetail = textAnswer.Text;
             this.DialogResult = DialogResult.OK;
 
         }
@@ -194,13 +196,20 @@ namespace QuestTag
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonSetPath(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();//打开文件对话框              
             if (InitialDialog(openFileDialog, "Open"))
             {
-                 textQuestPath.Text= openFileDialog.FileName;
+                if (((Button)sender).Tag.ToString() == "Quest")
+                    textQuestPath.Text = openFileDialog.FileName;
+                else if (((Button)sender).Tag.ToString() == "Answer")
+                    textAnswerPath.Text = openFileDialog.FileName;
             }
+            openFileDialog.Dispose();
+
         }
+
+
     }
 }
