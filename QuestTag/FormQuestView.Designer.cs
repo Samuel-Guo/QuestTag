@@ -61,9 +61,10 @@
             // 
             // pictureQuest
             // 
+            this.pictureQuest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureQuest.Location = new System.Drawing.Point(476, 67);
             this.pictureQuest.Name = "pictureQuest";
-            this.pictureQuest.Size = new System.Drawing.Size(382, 237);
+            this.pictureQuest.Size = new System.Drawing.Size(406, 237);
             this.pictureQuest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureQuest.TabIndex = 1;
             this.pictureQuest.TabStop = false;

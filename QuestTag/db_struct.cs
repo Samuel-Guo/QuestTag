@@ -8,6 +8,15 @@ namespace QuestTag
 {
     public static class Db_struct
     {
+        public struct DataBaseSetting
+        {
+            public string serverIp;
+            public string dataBaseName;
+            public string userName;
+            public string passWord;
+            public int port;
+            public string charSet;
+        }
         public struct Tag_group_def
         {
            public int id  ;

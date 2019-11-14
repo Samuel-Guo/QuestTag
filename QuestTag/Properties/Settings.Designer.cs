@@ -22,5 +22,89 @@ namespace QuestTag.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        public string DbIP {
+            get {
+                return ((string)(this["DbIP"]));
+            }
+            set {
+                this["DbIP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("edu")]
+        public string DbName {
+            get {
+                return ((string)(this["DbName"]));
+            }
+            set {
+                this["DbName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        public string DbUser {
+            get {
+                return ((string)(this["DbUser"]));
+            }
+            set {
+                this["DbUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1234!@#$qwer")]
+        public string DbPwd {
+            get {
+                return ((string)(this["DbPwd"]));
+            }
+            set {
+                this["DbPwd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3306")]
+        public string DbPort {
+            get {
+                return ((string)(this["DbPort"]));
+            }
+            set {
+                this["DbPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("utf8")]
+        public string DbCharSet {
+            get {
+                return ((string)(this["DbCharSet"]));
+            }
+            set {
+                this["DbCharSet"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000, 500")]
+        public global::System.Drawing.Size MainWndSize {
+            get {
+                return ((global::System.Drawing.Size)(this["MainWndSize"]));
+            }
+            set {
+                this["MainWndSize"] = value;
+            }
+        }
     }
 }

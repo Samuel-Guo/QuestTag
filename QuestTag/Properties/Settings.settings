@@ -1,7 +1,27 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="QuestTag.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DbIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="DbName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">edu</Value>
+    </Setting>
+    <Setting Name="DbUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root</Value>
+    </Setting>
+    <Setting Name="DbPwd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1234!@#$qwer</Value>
+    </Setting>
+    <Setting Name="DbPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3306</Value>
+    </Setting>
+    <Setting Name="DbCharSet" Type="System.String" Scope="User">
+      <Value Profile="(Default)">utf8</Value>
+    </Setting>
+    <Setting Name="MainWndSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">1000, 500</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

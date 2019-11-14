@@ -25,6 +25,8 @@ namespace QuestTag
 
         public FormMain()
         {
+            
+
             InitDBconf();
 
             InitializeComponent();
@@ -38,24 +40,26 @@ namespace QuestTag
         {
             //Visible = false;
             //WindowState = FormWindowState.Minimized;
-            Size = new Size(1050, 550);
-
-            UpdateQuestList();
+            // Size = new Size(1050, 550);
+            var size = Properties.Settings.Default.MainWndSize;
+            Size = size;
+            UpdateTagsList();
+            SetAnswerVisible();
 
         }
 
-        private void UpdateQuestList()
+        private void UpdateTagsList()
         {
-            ListQuests.Items.Clear();
+            ListTags.Items.Clear();
             listId_tagId_map.Clear();
 
-            string sqlcmd = "SELECT * FROM tag_def where is_valid = 1 ; ";
+            string sqlcmd = "SELECT * FROM tag_def where is_valid = 1  ORDER BY group_id; ";
 
             var tag_list = globalDB.ReadDB<Db_struct.Tag_def>(sqlcmd);
 
             foreach (var tags in tag_list)
             {
-                int addIndex = ListQuests.Items.Add(tags.caption);
+                int addIndex = ListTags.Items.Add(tags.caption);
                 listId_tagId_map.Add(addIndex, tags.id);
                 string tagsql = "SELECT quest_id FROM quest_tag_map where is_valid = 1 and tag_id =  " + tags.id + " ;";
                 var questIds = globalDB.ReadDB<int>(tagsql);
@@ -73,13 +77,13 @@ namespace QuestTag
         private static void InitDBconf()
         {
             GlobalVar.globalDB = new MysqlConnector();
-            GlobalVar.globalDB.SetServer("127.0.0.1")
-           .SetDataBase("edu")
-           .SetUserID("root")
-           .SetPassword("1234!@#$qwer")
-           //.SetPassword("12qw!@QW")
-           .SetPort("3306")
-           .SetCharset("utf8");
+          
+            GlobalVar.globalDB.SetServer(Properties.Settings.Default.DbIP)
+           .SetDataBase(Properties.Settings.Default.DbName)
+           .SetUserID(Properties.Settings.Default.DbUser)
+           .SetPassword(Properties.Settings.Default.DbPwd)
+           .SetPort(Properties.Settings.Default.DbPort)
+           .SetCharset(Properties.Settings.Default.DbCharSet);
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -123,7 +127,7 @@ namespace QuestTag
                 //TODO:
             }
             HashSet<int> selectTagIds = new HashSet<int>();
-            var selectQuestIndex = ListQuests.CheckedIndices;
+            var selectQuestIndex = ListTags.CheckedIndices;
             foreach (int item in selectQuestIndex)
             {
                 selectTagIds.Add(listId_tagId_map[item]);
@@ -229,14 +233,34 @@ namespace QuestTag
 
         private void checkBoxRevealAnswer_CheckedChanged(object sender, EventArgs e)
         {
+            SetAnswerVisible();
+        }
+
+        private void SetAnswerVisible()
+        {
             labelAnswer.Visible = checkBoxRevealAnswer.Checked;
             pictureAnswer.Visible = checkBoxRevealAnswer.Checked;
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            UpdateQuestList();
+            UpdateTagsList();
 
+        }
+
+        private void FormMain_Resize(object sender, EventArgs e)
+        {
+            System.Drawing.Size wndSize = new Size(Size.Width, Size.Height);
+            if(Size.Width<1500 || Size.Width >1600)
+            {
+                Size = wndSize;
+            }
+        }
+
+        private void FormMain_ResizeEnd(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.MainWndSize = Size;
+            Properties.Settings.Default.Save();
         }
     }
 }

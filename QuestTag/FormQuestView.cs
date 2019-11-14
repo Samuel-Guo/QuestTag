@@ -196,7 +196,8 @@ namespace QuestTag
         {
             if (selectedBox.Tag.ToString() == "Quest")
             {
-                formAdd = new FormQuestAdd("编辑问题",listId_id_map[ selectedBox.SelectedIndex]);
+                int questId = listId_id_map[selectedBox.SelectedIndex];
+                formAdd = new FormQuestAdd("编辑问题",questId);
                 if (formAdd.ShowDialog() == DialogResult.OK)
                 {
                     string questName = formAdd.QuestName;
@@ -205,20 +206,24 @@ namespace QuestTag
                     string answerDetail = formAdd.AnswerDetail;
                     string answerPath = formAdd.AnswerPath;
 
-                    string getkeysql = "analyze table tag_group_def; ";
-                    globalDB.ExeQuery(getkeysql);
-                    getkeysql = "SELECT `AUTO_INCREMENT` FROM `information_schema`.`TABLES` WHERE `TABLE_SCHEMA`= 'edu' AND`TABLE_NAME`= 'quest_def';";
-                    int newKeyIdx = globalDB.ReadDB<int>(getkeysql)[0];
+                    //string getkeysql = "analyze table tag_group_def; ";
+                    //globalDB.ExeQuery(getkeysql);
+                    //getkeysql = "SELECT `AUTO_INCREMENT` FROM `information_schema`.`TABLES` WHERE `TABLE_SCHEMA`= 'edu' AND`TABLE_NAME`= 'quest_def';";
+                    //int newKeyIdx = globalDB.ReadDB<int>(getkeysql)[0];
 
-                    string sqlcmd = string.Format("INSERT INTO quest_def (`caption`,`detail`,`file_path`,`answer_text`,`answer_picture`) " +
-                        "VALUES ('{0}','{1}','{2}' ,'{3}','{4}');"
-                        , questName, questDetail, questPath, answerDetail, answerPath);
+                    string sqlcmd = string.Format("UPDATE quest_def SET `caption`='{0}' ,`detail` ='{1}',`file_path` = '{2}' ,`answer_text` ='{3}',`answer_picture` ='{4}' WHERE id = {5}" 
+                        , questName, questDetail, questPath, answerDetail, answerPath , questId);
                     if (globalDB.ExeUpdate(sqlcmd.Replace("\\", "\\\\")) == 0)
-                        MessageBox.Show("insert fail!");
+                        MessageBox.Show("update fail!");
+
+                    string delsql = "DELETE FROM quest_tag_map WHERE quest_id = " + questId.ToString();
+                    if (globalDB.ExeUpdate(delsql) == 0)
+                        MessageBox.Show("delete fail!");
+
 
                     foreach (var item in formAdd.listId_selectTagId_map)
                     {
-                        string tagsql = string.Format("INSERT INTO quest_tag_map (`quest_id`, `tag_id`) VALUES ({0}, {1});", newKeyIdx, item.Value);
+                        string tagsql = string.Format("INSERT INTO quest_tag_map (`quest_id`, `tag_id`) VALUES ({0}, {1});", questId, item.Value);
                         if (globalDB.ExeUpdate(tagsql) == 0)
                             MessageBox.Show("insert fail!");
 
@@ -243,7 +248,7 @@ namespace QuestTag
                     MessageBox.Show("update fail!");
            }
             LoadListBox();
-
+            listTags.Items.Clear();
         }
     }
 }
