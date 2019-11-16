@@ -57,6 +57,8 @@ namespace QuestTag
 
             var tag_list = globalDB.ReadDB<Db_struct.Tag_def>(sqlcmd);
 
+            string sqlfile = Properties.Resources.DBstruct;
+
             foreach (var tags in tag_list)
             {
                 int addIndex = ListTags.Items.Add(tags.caption);

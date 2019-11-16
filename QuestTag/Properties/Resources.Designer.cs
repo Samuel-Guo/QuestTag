@@ -59,5 +59,25 @@ namespace QuestTag.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   查找类似 CREATE DATABASE  IF NOT EXISTS `edu` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
+        ///USE `edu`;
+        ///-- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
+        ///--
+        ///-- Host: localhost    Database: edu
+        ///-- ------------------------------------------------------
+        ///-- Server version	8.0.13
+        ///
+        ////*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+        ////*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+        ////*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+        /// SET [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string DBstruct {
+            get {
+                return ResourceManager.GetString("DBstruct", resourceCulture);
+            }
+        }
     }
 }
