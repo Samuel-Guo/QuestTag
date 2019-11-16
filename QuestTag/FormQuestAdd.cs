@@ -61,6 +61,9 @@ namespace QuestTag
             textQuestName.Text = quest.caption;
             textQuestDetail.Text = quest.detail;
             textQuestPath.Text = quest.file_path;
+            textAnswer.Text = quest.answer_text;
+            textAnswerPath.Text = quest.answer_picture;
+            
         }
 
         private void FormQuestAdd_Load(object sender, EventArgs e)
