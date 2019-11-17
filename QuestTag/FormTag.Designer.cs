@@ -78,9 +78,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(372, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 18);
+            this.label2.Size = new System.Drawing.Size(80, 18);
             this.label2.TabIndex = 1;
-            this.label2.Text = "标签组";
+            this.label2.Text = "标签名称";
             // 
             // contextMenuStrip1
             // 

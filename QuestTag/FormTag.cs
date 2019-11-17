@@ -151,6 +151,8 @@ namespace QuestTag
         private void PopMenu(object ClickSrc,MouseEventArgs e)
         {
             selectedBox = (ListBox)ClickSrc;
+            if (selectedBox.Tag.ToString() == "Tag" && ListBoxTagGroup.SelectedItem == null)
+                return;
             if (e.Button == MouseButtons.Right)
             {
                 int currentIndex = e.Y / 12;
@@ -196,7 +198,9 @@ namespace QuestTag
             }
             else
             {
+
                 formOpt = new FormTagAdd("增添标签", false);
+
                 if (formOpt.ShowDialog() == DialogResult.OK)
                 {
                     int seletIdx = ListBoxTagGroup.SelectedIndex;
@@ -222,13 +226,14 @@ namespace QuestTag
 
         private void listBoxTag_MouseUp(object sender, MouseEventArgs e)
         {
+            //if(sender)
             PopMenu(sender,e);
         }
 
         private void MenuDel_Click(object sender, EventArgs e)
         {
             string selectText = selectedBox.SelectedItem.ToString();
-            if (selectedBox.Tag.ToString() == "Group")
+            if (selectedBox.Tag.ToString() == "Group")  //TODO:删除标签组需要同时删除标签
             {
                 var confirm = MessageBox.Show("确定删除标签组"+ selectText +"吗？此操作将删除标签组下面所有标签。","确认删除",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
                 if (confirm == DialogResult.Yes)
@@ -236,6 +241,11 @@ namespace QuestTag
                     string sqlcmd = string.Format("UPDATE tag_group_def set is_valid= 0 where id = {0} ;", cap_map_tag_group[selectText].id);
                     if (globalDB.ExeUpdate(sqlcmd) == 0)
                         MessageBox.Show("update fail!");
+                    sqlcmd ="UPDATE tag_def set is_vaild = 0 where group_id =" + cap_map_tag_group[selectText].id;
+                    if (globalDB.ExeUpdate(sqlcmd) == 0)
+                        MessageBox.Show("update fail!");
+
+
                     loadListBox();
                 }
             }
